@@ -3,7 +3,6 @@ import {
   Flex,
   HStack,
   Link,
-  Icon,
   Button,
   useColorModeValue,
   useColorMode,
@@ -12,36 +11,28 @@ import {
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 
+import Logo from './logo';
+
 const navbarItems = {
   Home: '/',
   About: '/about',
-  Contact: '/contact',
 };
 
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bg = useColorModeValue('gray.200', 'gray.700');
+
+  const globalBgColor = useColorModeValue('gray.100', 'gray.900');
+  const btnBgColor = useColorModeValue('gray.200', 'gray.700');
 
   return (
     <>
-      <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>
+      <Box bg={globalBgColor} px={4}>
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
             {/* Audi Logo */}
-            <Icon
-              viewBox='0 -15 225 100'
-              color='red.500'
-              width='200'
-              height='50'
-            >
-              <path
-                fill='none'
-                stroke={colorMode === 'light' ? '#000' : '#fff'}
-                strokeWidth='7'
-                d='m34,4a30,30 0 1,0 2,0zm42,0a30,30 0 1,0 2,0zm42,0a30,30 0 1,0 2,0zm42,0a30,30 0 1,0 2,0z'
-              />
-            </Icon>
+            <Logo />
 
+            {/* Navbar Items */}
             <HStack
               as={'nav'}
               spacing={4}
@@ -55,7 +46,7 @@ export default function Navbar() {
                     rounded={'md'}
                     _hover={{
                       textDecoration: 'none',
-                      bg,
+                      bg: btnBgColor,
                     }}
                     href={value}
                   >
@@ -66,36 +57,23 @@ export default function Navbar() {
             </HStack>
           </HStack>
 
+          {/* Navbar buttons */}
           <Stack
             flex={{ base: 1, md: 0 }}
             justify={'flex-end'}
             direction={'row'}
-            spacing={6}
+            spacing={5}
           >
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             </Button>
             <Button
-              as={'a'}
-              fontSize={'sm'}
-              fontWeight={400}
-              variant={'link'}
-              href={'#'}
-            >
-              Sign In
-            </Button>
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
               fontSize={'sm'}
               fontWeight={600}
-              color={'white'}
-              bg={'teal.500'}
+              colorScheme='blue'
               href={'#'}
-              _hover={{
-                bg: 'pink.300',
-              }}
             >
-              Sign Up
+              View cart & checkout
             </Button>
           </Stack>
         </Flex>

@@ -1,17 +1,25 @@
-import { Box, Heading, Text, Button } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Text,
+  Button,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import Link from 'next/link';
 
-import Navbar from '../components/navbar';
+import Page from '../components/page';
 
 export default function NotFound() {
+  const textColor = useColorModeValue('gray.500', 'gray.300');
+
   return (
-    <>
-      <Navbar />
+    <Page>
       <Box textAlign='center' py={10} px={6}>
         <Heading
           display='inline-block'
           as='h2'
           size='2xl'
-          backgroundColor='teal.500'
+          backgroundColor='blue.500'
           backgroundClip='text'
         >
           404
@@ -19,20 +27,14 @@ export default function NotFound() {
         <Text fontSize='18px' mt={3} mb={2}>
           Page Not Found
         </Text>
-        <Text color={'gray.500'} mb={6}>
-          The page you're looking for does not seem to exist
+        <Text color={textColor} mb={6}>
+          The page you're looking for does not seem to exist.
         </Text>
 
-        <Button
-          colorScheme='teal'
-          backgroundColor='teal.500'
-          color='white'
-          variant='solid'
-          href='/'
-        >
-          Go to Home
-        </Button>
+        <Link href='/' passHref>
+          <Button colorScheme='blue'>Go to Home</Button>
+        </Link>
       </Box>
-    </>
+    </Page>
   );
 }

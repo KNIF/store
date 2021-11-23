@@ -15,10 +15,12 @@
     "@chakra-ui/react": "latest",
     "@emotion/react": "latest",
     "@emotion/styled": "latest",
+    "@fontsource/inter": "latest",
     "framer-motion": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "swr": "latest"
   },
   "devDependencies": {
     "eslint": "latest",
