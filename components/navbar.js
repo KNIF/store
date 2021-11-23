@@ -4,6 +4,7 @@ import {
   HStack,
   Link,
   Button,
+  Icon,
   IconButton,
   useDisclosure,
   useColorModeValue,
@@ -11,6 +12,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import { FaShoppingCart } from 'react-icons/fa';
 import NextLink from 'next/link';
 
 import Logo from './logo';
@@ -95,7 +97,7 @@ export default function Navbar() {
               colorScheme='blue'
               href={'#'}
             >
-              View cart & checkout
+              <Icon as={FaShoppingCart} w={5} h={5} />
             </Button>
           </Stack>
         </Flex>

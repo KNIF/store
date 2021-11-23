@@ -20,6 +20,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "latest",
     "swr": "latest"
   },
   "devDependencies": {
