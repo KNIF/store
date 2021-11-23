@@ -27,7 +27,7 @@ export default function NotFound() {
         <Text fontSize='18px' mt={3} mb={2}>
           Page Not Found
         </Text>
-        <Text color={textColor} mb={6}>
+        <Text color={textColor} mb={6} px='3vw'>
           The page you&apos;re looking for does not seem to exist.
         </Text>
 

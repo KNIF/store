@@ -39,7 +39,7 @@ export default function Home() {
         >
           Audi Store
         </Heading>
-        <Text color={textColor} px='3rem'>
+        <Text color={textColor} px='3vw'>
           {JSON.stringify(data)}
         </Text>
       </Box>

@@ -20,7 +20,7 @@ export default function Home() {
         <Text fontSize='18px' mt={3} mb={2}>
           About this page
         </Text>
-        <Text color={textColor} mb={6}>
+        <Text color={textColor} mb={6} px='3vw'>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
           sed diam voluptua.
