@@ -27,7 +27,7 @@ export default function Home() {
 
   // Show page
   return (
-    <Page>
+    <Page title='Home'>
       <Box textAlign='center' py={10} px={6}>
         <Heading
           display='inline-block'

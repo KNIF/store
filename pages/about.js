@@ -6,7 +6,7 @@ export default function Home() {
   const textColor = useColorModeValue('gray.700', 'gray.300');
 
   return (
-    <Page>
+    <Page title='About'>
       <Box textAlign='center' py={10} px={6}>
         <Heading
           display='inline-block'
