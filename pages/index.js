@@ -1,4 +1,11 @@
-import { Box, Heading, Text, Flex, Spinner } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  Text,
+  Flex,
+  Spinner,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
 import useSWR from 'swr';
 
@@ -7,6 +14,8 @@ import Page from '../components/page';
 
 export default function Home() {
   const { data, error } = useSWR('/api/products', fetcher);
+
+  const textColor = useColorModeValue('gray.700', 'gray.300');
 
   // Show error
   if (error)
@@ -56,7 +65,7 @@ export default function Home() {
         <Heading as='h1' size='xl' mb={6}>
           Audi Store
         </Heading>
-        <Text color={'gray.500'}>
+        <Text color={textColor}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
           nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
           sed diam voluptua. At vero eos et accusam et justo duo dolores et ea

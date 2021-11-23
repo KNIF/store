@@ -26,7 +26,16 @@ export default function Navbar() {
 
   return (
     <>
-      <Box bg={globalBgColor} px={4}>
+      <Box
+        bg={globalBgColor}
+        px={4}
+        style={{
+          overflow: 'hidden',
+          position: 'fixed',
+          top: 0,
+          width: '100%',
+        }}
+      >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <HStack spacing={8} alignItems={'center'}>
             {/* Audi Logo */}

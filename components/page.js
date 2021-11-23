@@ -5,7 +5,9 @@ export default function Page({ children }) {
   return (
     <>
       <Navbar />
-      {children}
+      <main style={{ marginTop: '3rem', marginBottom: '10rem' }}>
+        {children}
+      </main>
       <Footer />
     </>
   );

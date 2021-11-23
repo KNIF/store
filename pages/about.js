@@ -3,7 +3,7 @@ import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
 import Page from '../components/page';
 
 export default function Home() {
-  const textColor = useColorModeValue('gray.500', 'gray.300');
+  const textColor = useColorModeValue('gray.700', 'gray.300');
 
   return (
     <Page>
