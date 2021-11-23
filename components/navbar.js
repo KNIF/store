@@ -4,11 +4,13 @@ import {
   HStack,
   Link,
   Button,
+  IconButton,
+  useDisclosure,
   useColorModeValue,
   useColorMode,
   Stack,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import NextLink from 'next/link';
 
 import Logo from './logo';
@@ -19,6 +21,7 @@ const navbarItems = {
 };
 
 export default function Navbar() {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
   const globalBgColor = useColorModeValue('gray.100', 'gray.900');
@@ -37,6 +40,16 @@ export default function Navbar() {
         }}
       >
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
+          {/* Mobile friendly navbar */}
+          <IconButton
+            size={'md'}
+            icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+            aria-label={'Open Menu'}
+            display={{ md: 'none' }}
+            onClick={isOpen ? onClose : onOpen}
+            style={{ marginRight: '1rem' }}
+          />
+
           <HStack spacing={8} alignItems={'center'}>
             {/* Audi Logo */}
             <Logo />
@@ -86,6 +99,30 @@ export default function Navbar() {
             </Button>
           </Stack>
         </Flex>
+
+        {/* Mobile navbar menu */}
+        {isOpen ? (
+          <Box pb={4} display={{ md: 'none' }}>
+            <Stack as={'nav'} spacing={4}>
+              {Object.entries(navbarItems).map(([key, value]) => (
+                <NextLink href={value} key={key} passHref>
+                  <Link
+                    px={2}
+                    py={1}
+                    rounded={'md'}
+                    _hover={{
+                      textDecoration: 'none',
+                      bg: btnBgColor,
+                    }}
+                    href={value}
+                  >
+                    {key}
+                  </Link>
+                </NextLink>
+              ))}
+            </Stack>
+          </Box>
+        ) : null}
       </Box>
     </>
   );
