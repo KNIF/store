@@ -88,17 +88,22 @@ export default function Navbar() {
             direction={'row'}
             spacing={5}
           >
+            {/* Toggle theme button */}
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             </Button>
-            <Button
-              fontSize={'sm'}
-              fontWeight={600}
-              colorScheme='blue'
-              href={'#'}
-            >
-              <Icon as={FaShoppingCart} w={5} h={5} />
-            </Button>
+
+            {/* Shopping cart button */}
+            <NextLink href={'/cart'} passHref>
+              <Button
+                fontSize={'sm'}
+                fontWeight={600}
+                colorScheme='blue'
+                href={'#'}
+              >
+                <Icon as={FaShoppingCart} w={5} h={5} />
+              </Button>
+            </NextLink>
           </Stack>
         </Flex>
 

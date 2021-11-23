@@ -19,7 +19,7 @@ export default function NotFound() {
           display='inline-block'
           as='h2'
           size='2xl'
-          backgroundColor='blue.500'
+          backgroundColor='blue.400'
           backgroundClip='text'
         >
           404

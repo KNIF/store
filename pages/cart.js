@@ -15,10 +15,10 @@ export default function Home() {
           backgroundColor='blue.400'
           backgroundClip='text'
         >
-          About
+          Cart
         </Heading>
         <Text fontSize='18px' mt={3} mb={2}>
-          About this page
+          My Shopping Cart
         </Text>
         <Text color={textColor} mb={6}>
           Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
