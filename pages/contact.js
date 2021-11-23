@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Box p={4}>Home</Box>
+      <Box p={4}>Contact</Box>
     </>
   );
 }

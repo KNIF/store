@@ -1,5 +1,8 @@
 {
   "name": "store",
+  "version": "1.0.0",
+  "description": "A basic online shop.",
+  "author": "Maurice Huber <maurice.huber@audi.de>",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,12 +11,17 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "12.0.4",
-    "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "@chakra-ui/icons": "latest",
+    "@chakra-ui/react": "latest",
+    "@emotion/react": "latest",
+    "@emotion/styled": "latest",
+    "framer-motion": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "eslint": "7.32.0",
-    "eslint-config-next": "12.0.4"
+    "eslint": "latest",
+    "eslint-config-next": "latest"
   }
 }
