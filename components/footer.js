@@ -30,8 +30,8 @@ export default function Footer() {
             <Logo />
           </Flex>
           <Text pt={6} fontSize={'sm'} textAlign={'center'}>
-            This is a demo site. I do not own any copyright to images or logos
-            shown here.
+            This is a demo site. I do not own any copyright to the images or
+            logos shown here.
           </Text>
         </Box>
       </Box>

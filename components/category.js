@@ -1,10 +1,4 @@
-import {
-  Box,
-  Wrap,
-  WrapItem,
-  Heading,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Box, Wrap, WrapItem, Heading } from '@chakra-ui/react';
 import Product from './product';
 
 export default function Category({ name, products }) {

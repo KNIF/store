@@ -96,12 +96,7 @@ export default function Navbar() {
 
             {/* Shopping cart button */}
             <NextLink href={'/cart'} passHref>
-              <Button
-                fontSize={'sm'}
-                fontWeight={600}
-                colorScheme='blue'
-                href={'#'}
-              >
+              <Button fontSize={'sm'} fontWeight={600} colorScheme='blue'>
                 <Icon as={FaShoppingCart} w={5} h={5} />
               </Button>
             </NextLink>

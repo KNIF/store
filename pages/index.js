@@ -7,18 +7,14 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import { useContext } from 'react';
 import useSWR from 'swr';
 
 import fetcher from '../lib/fetcher';
-import CartContext from '../lib/context';
 import Page from '../components/page';
 import Category from '../components/category';
 
 export default function Home() {
-  const { cart, setCart } = useContext(CartContext);
   const { data, error } = useSWR('/api/products', fetcher);
-
   const textColor = useColorModeValue('gray.700', 'gray.300');
 
   // Show error
@@ -61,13 +57,11 @@ export default function Home() {
       </Page>
     );
 
-  //setCart(data);
-
   // Show page
   return (
     <Page title='Home'>
       <Box textAlign='center' py={10} px={6}>
-        <Heading
+        {/* <Heading
           display='inline-block'
           as='h2'
           size='2xl'
@@ -76,7 +70,7 @@ export default function Home() {
           mb={3}
         >
           AUDI Store
-        </Heading>
+        </Heading> */}
 
         {/* List products */}
         {data.map((category) => (
