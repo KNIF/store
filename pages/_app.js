@@ -1,8 +1,7 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { useState } from 'react';
 import '@fontsource/inter';
 
-import CartContext from '../lib/context';
+import { AppWrapper } from '../context/AppContext';
 
 const theme = extendTheme({
   fonts: {
@@ -12,14 +11,14 @@ const theme = extendTheme({
 });
 
 function MyApp({ Component, pageProps }) {
-  const [cart, setCart] = useState([]);
-
   return (
-    <ChakraProvider theme={theme}>
-      <CartContext.Provider value={{ cart, setCart }}>
-        <Component {...pageProps} />
-      </CartContext.Provider>
-    </ChakraProvider>
+    <>
+      <AppWrapper>
+        <ChakraProvider theme={theme}>
+          <Component {...pageProps} />
+        </ChakraProvider>
+      </AppWrapper>
+    </>
   );
 }
 

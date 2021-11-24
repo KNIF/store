@@ -1,10 +1,12 @@
-import { Box, Wrap, WrapItem, Heading } from '@chakra-ui/react';
+import { Box, Wrap, WrapItem, Heading, useMediaQuery } from '@chakra-ui/react';
 import Product from './product';
 
 export default function Category({ name, products }) {
+  const [isSmall] = useMediaQuery('(max-width: 735px)');
+
   return (
     <>
-      <Box mb='5rem'>
+      <Box mb='5rem' alignContent='center' pl={isSmall ? '25vw' : '0vw'}>
         <Heading as='h2' size='xl' mb={2} textAlign='left'>
           {name}
         </Heading>

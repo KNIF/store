@@ -21,7 +21,7 @@ export default function Home() {
   if (error)
     return (
       <Page>
-        <Box textAlign='center' py={10} px={6}>
+        <Box textAlign='center' py={10} px='3vw'>
           <Box display='inline-block'>
             <Flex
               flexDirection='column'
@@ -51,7 +51,7 @@ export default function Home() {
   if (!data)
     return (
       <Page>
-        <Box textAlign='center' py={10} px={6}>
+        <Box textAlign='center' py={10} px='3vw'>
           <Spinner size='lg' />
         </Box>
       </Page>
@@ -60,7 +60,7 @@ export default function Home() {
   // Show page
   return (
     <Page title='Home'>
-      <Box textAlign='center' py={10} px={6}>
+      <Box textAlign='center' py={10} px='3vw'>
         {/* <Heading
           display='inline-block'
           as='h2'

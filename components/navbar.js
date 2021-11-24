@@ -104,7 +104,7 @@ export default function Navbar() {
         </Flex>
 
         {/* Mobile navbar menu */}
-        {isOpen ? (
+        {isOpen && (
           <Box pb={4} display={{ md: 'none' }}>
             <Stack as={'nav'} spacing={4}>
               {Object.entries(navbarItems).map(([key, value]) => (
@@ -125,7 +125,7 @@ export default function Navbar() {
               ))}
             </Stack>
           </Box>
-        ) : null}
+        )}
       </Box>
     </>
   );

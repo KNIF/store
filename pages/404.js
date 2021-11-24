@@ -14,7 +14,7 @@ export default function NotFound() {
 
   return (
     <Page>
-      <Box textAlign='center' py={10} px={6}>
+      <Box textAlign='center' py={10} px='3vw'>
         <Heading
           display='inline-block'
           as='h2'

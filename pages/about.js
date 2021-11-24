@@ -1,13 +1,14 @@
-import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Heading, Text, Link, useColorModeValue } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import Page from '../components/page';
 
-export default function Home() {
+export default function About() {
   const textColor = useColorModeValue('gray.700', 'gray.300');
 
   return (
     <Page title='About'>
-      <Box textAlign='center' py={10} px={6}>
+      <Box textAlign='center' py={10} px='3vw'>
         <Heading
           display='inline-block'
           as='h2'
@@ -17,13 +18,38 @@ export default function Home() {
         >
           About
         </Heading>
-        <Text fontSize='18px' mt={3} mb={2}>
-          About this page
+
+        <Text color={textColor} mt={6}>
+          This website is a demo of a basic online store for cars.
+          <br />
+          Built using{' '}
+          <Link href='https://nextjs.org' isExternal>
+            Next.js
+            <ExternalLinkIcon mx='3px' />
+          </Link>{' '}
+          and{' '}
+          <Link href='https://chakra-ui.com' isExternal>
+            Chakra UI
+            <ExternalLinkIcon mx='3px' />
+          </Link>
+          {'.'}
         </Text>
-        <Text color={textColor} mb={6} px='3vw'>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua.
+
+        <Text color={textColor} mt={6}>
+          The source code is available on{' '}
+          <Link href='https://github.com/KNIF/store' isExternal>
+            GitHub
+            <ExternalLinkIcon mx='3px' />
+          </Link>
+        </Text>
+
+        <Text color={textColor} mt={6}>
+          Created by{' '}
+          <Link href='https://mauricehuber.com' isExternal>
+            Maurice Huber
+          </Link>{' '}
+          between 23.11.2021 and 26.11.2021
+          {'.'}
         </Text>
       </Box>
     </Page>
