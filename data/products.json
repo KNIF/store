@@ -1,0 +1,142 @@
+[
+  {
+    "name": "e-tron GT",
+    "models": [
+      {
+        "name": "e-tron GT quattro",
+        "price": "101.600",
+        "image": "/models/1/1.png"
+      },
+      {
+        "name": "RS e-tron GT",
+        "price": "140.000",
+        "image": "/models/1/2.png"
+      }
+    ]
+  },
+  {
+    "name": "e-tron",
+    "models": [
+      {
+        "name": "Audi e-tron",
+        "price": "69.100",
+        "image": "/models/2/1.png"
+      },
+      {
+        "name": "Audi e-tron Sportback",
+        "price": "71.350",
+        "image": "/models/2/2.png"
+      },
+      {
+        "name": "Audi e-tron S",
+        "price": "93.800",
+        "image": "/models/2/3.png"
+      },
+      {
+        "name": "Audi e-tron S Sportback",
+        "price": "96.050",
+        "image": "/models/2/4.png"
+      }
+    ]
+  },
+  {
+    "name": "A1",
+    "models": [
+      {
+        "name": "A1 Sportback",
+        "price": "21.200",
+        "image": "/models/3/1.png"
+      },
+      {
+        "name": "A1 citycarver",
+        "price": "23.000",
+        "image": "/models/3/2.png"
+      }
+    ]
+  },
+  {
+    "name": "A3",
+    "models": [
+      {
+        "name": "A3 Sportback",
+        "price": "27.700",
+        "image": "/models/4/1.png"
+      },
+      {
+        "name": "A3 Sportback TFSI e",
+        "price": "38.440",
+        "image": "/models/4/2.png"
+      },
+      {
+        "name": "A3 Sportback g-tron",
+        "price": "32.500",
+        "image": "/models/4/3.png"
+      },
+      {
+        "name": "A3 Limousine",
+        "price": "28.600",
+        "image": "/models/4/4.png"
+      },
+      {
+        "name": "S3 Sportback",
+        "price": "48.500",
+        "image": "/models/4/5.png"
+      },
+      {
+        "name": "S3 Limousine",
+        "price": "49.400",
+        "image": "/models/4/6.png"
+      },
+      {
+        "name": "RS 3 Sportback",
+        "price": "60.000",
+        "image": "/models/4/7.png"
+      },
+      {
+        "name": "RS 3 Limousine",
+        "price": "62.000",
+        "image": "/models/4/8.png"
+      }
+    ]
+  },
+  {
+    "name": "A4",
+    "models": [
+      {
+        "name": "A4 Limousine",
+        "price": "35.250",
+        "image": "/models/5/1.png"
+      },
+      {
+        "name": "A4 Avant",
+        "price": "36.900",
+        "image": "/models/5/2.png"
+      },
+      {
+        "name": "A4 Avant g-tron",
+        "price": "45.000",
+        "image": "/models/5/3.png"
+      },
+      {
+        "name": "A4 allroad quattro",
+        "price": "50.900",
+        "image": "/models/5/4.png"
+      },
+      {
+        "name": "S4 Limousine TDI",
+        "price": "64.750",
+        "image": "/models/5/5.png"
+      },
+      {
+        "name": "S4 Avant TDI",
+        "price": "66.400",
+        "image": "/models/5/6.png"
+      },
+      {
+        "name": "RS 4 Avant",
+        "price": "84.000",
+        "image": "/models/5/7.png"
+      }
+    ]
+  }
+]

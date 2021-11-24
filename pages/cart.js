@@ -1,8 +1,11 @@
 import { Box, Heading, Text, useColorModeValue } from '@chakra-ui/react';
+import { useContext } from 'react';
 
+import CartContext from '../lib/context';
 import Page from '../components/page';
 
 export default function Home() {
+  const { cart, setCart } = useContext(CartContext);
   const textColor = useColorModeValue('gray.700', 'gray.300');
 
   return (

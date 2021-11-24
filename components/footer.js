@@ -30,7 +30,8 @@ export default function Footer() {
             <Logo />
           </Flex>
           <Text pt={6} fontSize={'sm'} textAlign={'center'}>
-            © {new Date().getFullYear()} AUDI AG. All rights reserved.
+            This is a demo site. I do not own any copyright to images or logos
+            shown here.
           </Text>
         </Box>
       </Box>
