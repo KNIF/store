@@ -36,6 +36,8 @@ export const AppReducer = (state, action) => {
         }
       }
 
+      localStorage.setItem('cart', JSON.stringify(newState));
+
       return newState;
     }
 
