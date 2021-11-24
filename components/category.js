@@ -5,7 +5,7 @@ export default function Category({ name, products }) {
   return (
     <>
       <Box mb='5rem'>
-        <Heading as='h2' size='xl' mt={6} mb={2} textAlign='left'>
+        <Heading as='h2' size='xl' mb={2} textAlign='left'>
           {name}
         </Heading>
 

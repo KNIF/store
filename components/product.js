@@ -3,7 +3,6 @@ import {
   Button,
   Text,
   Icon,
-  Skeleton,
   useColorModeValue,
   useToast,
 } from '@chakra-ui/react';
