@@ -9,9 +9,12 @@ import Link from 'next/link';
 
 import Page from '../components/page';
 
+// 404 not found page
 export default function NotFound() {
+  // set color of text according to the color mode (dark/light)
   const textColor = useColorModeValue('gray.500', 'gray.300');
 
+  // render 404 page
   return (
     <Page>
       <Box textAlign='center' py={10} px='3vw'>
@@ -31,6 +34,7 @@ export default function NotFound() {
           The page you&apos;re looking for does not seem to exist.
         </Text>
 
+        {/* button to go back to homepage */}
         <Link href='/' passHref>
           <Button colorScheme='blue'>Go to Home</Button>
         </Link>

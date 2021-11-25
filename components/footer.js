@@ -2,10 +2,12 @@ import { Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 
 import Logo from './logo';
 
+// footer component
 export default function Footer() {
   return (
     <>
       <Box
+        // change footer color according to the set color scheme
         bg={useColorModeValue('gray.50', 'gray.900')}
         color={useColorModeValue('gray.700', 'gray.200')}
       >

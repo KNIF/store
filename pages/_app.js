@@ -1,8 +1,9 @@
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import '@fontsource/inter';
 
-import { AppWrapper } from '../context/AppContext';
+import { CartWrapper } from '../context/CartContext';
 
+// set custom fonts for the site
 const theme = extendTheme({
   fonts: {
     heading: 'Inter',
@@ -10,16 +11,18 @@ const theme = extendTheme({
   },
 });
 
-function MyApp({ Component, pageProps }) {
+// global app component
+export default function MyApp({ Component, pageProps }) {
   return (
     <>
-      <AppWrapper>
+      {/* add cart state provider to global context */}
+      <CartWrapper>
+        {/* apply chakra ui styles with custom theme */}
         <ChakraProvider theme={theme}>
+          {/* render components of site */}
           <Component {...pageProps} />
         </ChakraProvider>
-      </AppWrapper>
+      </CartWrapper>
     </>
   );
 }
-
-export default MyApp;

@@ -1,6 +1,8 @@
 import { Icon, useColorModeValue } from '@chakra-ui/react';
 
+// logo component
 export default function Logo() {
+  // render AUDI logo as svg
   return (
     <>
       <Icon viewBox='0 -15 200 100' width='200' height='50'>

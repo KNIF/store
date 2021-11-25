@@ -3,9 +3,12 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 import Page from '../components/page';
 
+// about page
 export default function About() {
+  // set color of text according to the color mode (dark/light)
   const textColor = useColorModeValue('gray.700', 'gray.300');
 
+  // render about page
   return (
     <Page title='About'>
       <Box textAlign='center' py={10} px='3vw'>
@@ -48,7 +51,7 @@ export default function About() {
           <Link href='https://mauricehuber.com' isExternal>
             Maurice Huber
           </Link>{' '}
-          between 23.11.2021 and 26.11.2021
+          between 23.11.2021 and 25.11.2021
           {'.'}
         </Text>
       </Box>
