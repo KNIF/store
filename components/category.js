@@ -8,26 +8,24 @@ export default function Category({ name, products }) {
 
   // render category component
   return (
-    <>
-      <Box mb='5rem' alignContent='center'>
-        {/* category name */}
-        <Heading as='h2' size='xl' mb={2} textAlign='left'>
-          {name}
-        </Heading>
+    <Box mb='5rem' alignContent='center'>
+      {/* category name */}
+      <Heading as='h2' size='xl' mb={2} textAlign='left'>
+        {name}
+      </Heading>
 
-        <Wrap spacing='3rem' justify={isSmall && 'space-around'}>
-          {/* iterate through products passed via props (parameter) and render them */}
-          {products.map((product) => (
-            <WrapItem key={product.name}>
-              <Product
-                name={product.name}
-                price={product.price}
-                image={product.image}
-              />
-            </WrapItem>
-          ))}
-        </Wrap>
-      </Box>
-    </>
+      <Wrap spacing='3rem' justify={isSmall && 'space-around'}>
+        {/* iterate through products passed via props (parameter) and render them */}
+        {products.map((product) => (
+          <WrapItem key={product.name}>
+            <Product
+              name={product.name}
+              price={product.price}
+              image={product.image}
+            />
+          </WrapItem>
+        ))}
+      </Wrap>
+    </Box>
   );
 }

@@ -66,7 +66,7 @@ export const CartReducer = (state, action) => {
     // remove an item from the cart
     case 'DEL': {
       // save filtered cart (without the item to be deleted) to a variable
-      let newState = state.filter((item) => item.name !== action.value.name);
+      const newState = state.filter((item) => item.name !== action.value.name);
 
       // write the new cart (without the item to be deleted) to local storage
       localStorage.setItem('cart', JSON.stringify(newState));
@@ -82,6 +82,11 @@ export const CartReducer = (state, action) => {
 
       // clear the cart by returning an empty array
       return [];
+    }
+
+    // return the current cart
+    default: {
+      return state;
     }
   }
 };

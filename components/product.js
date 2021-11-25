@@ -36,7 +36,7 @@ export default function Product({ name, price, image }) {
     // show toast message confirming item addition to cart
     toast({
       title: 'AUDI Store',
-      description: name + ' added to cart.',
+      description: `${name} added to cart.`,
       duration: 3000,
       isClosable: true,
       position: 'bottom-right',
@@ -45,30 +45,23 @@ export default function Product({ name, price, image }) {
 
   // render product component
   return (
-    <>
-      <Box rounded='lg' shadow='lg' padding='1.5rem' backgroundColor={bgColor}>
-        <Image
-          src={image}
-          alt={name}
-          width={275}
-          height={118}
-          placeholder='blur'
-          blurDataURL={blurData}
-        />
+    <Box rounded='lg' shadow='lg' padding='1.5rem' backgroundColor={bgColor}>
+      <Image
+        src={image}
+        alt={name}
+        width={275}
+        height={118}
+        placeholder='blur'
+        blurDataURL={blurData}
+      />
 
-        <Text fontSize={'lg'}>{name}</Text>
+      <Text fontSize={'lg'}>{name}</Text>
 
-        <Text fontSize={'sm'}>{price} EUR</Text>
+      <Text fontSize={'sm'}>{price} EUR</Text>
 
-        <Button
-          colorScheme='blue'
-          variant='ghost'
-          mt='1rem'
-          onClick={addToCart}
-        >
-          <Icon as={FaCartPlus} w={5} h={5} />
-        </Button>
-      </Box>
-    </>
+      <Button colorScheme='blue' variant='ghost' mt='1rem' onClick={addToCart}>
+        <Icon as={FaCartPlus} w={5} h={5} />
+      </Button>
+    </Box>
   );
 }

@@ -72,25 +72,15 @@ export default function Cart() {
     return isExtraLarge ? '10vw' : '3vw';
   }
 
-  // return amount of item with given name
-  function getAmount(name) {
-    // iterate over cart items and return amount of item with given name
-    return state.find((item) => item.name === name).amount;
-  }
-
   // function to update amount of item with given name
   function changeItemAmount(name, value) {
     let type;
-    value = parseInt(value);
+    let iValue = parseInt(value);
 
     // find item with given name and check if should increment or decrement
-    for (let s of state) {
+    for (const s of state) {
       if (s.name === name) {
-        if (s.amount < value) {
-          type = 'INC';
-        } else {
-          type = 'DEC';
-        }
+        type = s.amount < iValue ? 'INC' : 'DEC';
       }
     }
 
@@ -112,7 +102,7 @@ export default function Cart() {
   function cardEmptyToast() {
     toast({
       title: 'AUDI Store',
-      title: 'Your cart is empty.',
+      description: 'Your cart is empty.',
       status: 'warning',
       duration: 3000,
       isClosable: true,
@@ -251,7 +241,7 @@ export default function Cart() {
             <Tfoot>
               <Tr>
                 <Th>TOTAL</Th>
-                <Th isNumeric></Th>
+                <Th isNumeric />
                 <Th isNumeric>
                   {/* calculate total amount of items */}
                   {state.reduce((sum, item) => sum + item.amount, 0)}
