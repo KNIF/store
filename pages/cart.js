@@ -32,7 +32,7 @@ import Router from 'next/router';
 
 import Page from '../components/page';
 import { useAppContext } from '../context/AppContext';
-import { useForceUpdate } from '../lib/forceupdate';
+import { useForceUpdate } from '../hooks/forceupdate';
 
 export default function Cart() {
   const { state, dispatch } = useAppContext();
@@ -121,7 +121,9 @@ export default function Cart() {
     onClose();
     clearCart();
 
-    Router.push('/');
+    setTimeout(() => {
+      Router.push('/');
+    }, 1000);
   }
 
   return (
