@@ -32,10 +32,12 @@ import { useRef } from 'react';
 
 import Page from '../components/page';
 import { useAppContext } from '../context/AppContext';
+import { useForceUpdate } from '../lib/forceupdate';
 
 export default function Cart() {
   const { state, dispatch } = useAppContext();
   const toast = useToast();
+  const forceUpdate = useForceUpdate();
 
   const bgColor = useColorModeValue('gray.100', 'gray.900');
 
@@ -79,6 +81,8 @@ export default function Cart() {
     if (type) {
       dispatch({ type, value: { name } });
     }
+
+    forceUpdate();
   }
 
   function deleteItem(name) {
