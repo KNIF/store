@@ -5,7 +5,6 @@ import {
   AlertDialogHeader,
   AlertDialogContent,
   AlertDialogOverlay,
-  AlertDialogCloseButton,
   Box,
   Button,
   Flex,
@@ -27,8 +26,9 @@ import {
   useMediaQuery,
   useToast,
 } from '@chakra-ui/react';
-import { DeleteIcon, RepeatIcon } from '@chakra-ui/icons';
+import { DeleteIcon } from '@chakra-ui/icons';
 import { useRef } from 'react';
+import Router from 'next/router';
 
 import Page from '../components/page';
 import { useAppContext } from '../context/AppContext';
@@ -93,6 +93,21 @@ export default function Cart() {
     dispatch({ type: 'CLEAR' });
   }
 
+  function attemptCheckout() {
+    if (state.length === 0) {
+      toast({
+        title: 'AUDI Store',
+        title: 'Your cart is empty.',
+        status: 'warning',
+        duration: 3000,
+        isClosable: true,
+        position: 'top',
+      });
+    } else {
+      onOpen();
+    }
+  }
+
   function checkOut() {
     toast({
       title: 'AUDI Store',
@@ -105,6 +120,8 @@ export default function Cart() {
 
     onClose();
     clearCart();
+
+    Router.push('/');
   }
 
   return (
@@ -162,7 +179,6 @@ export default function Cart() {
                         minWidth='6vw'
                         maxWidth='8vw'
                         ml='1vw'
-                        mr='1vw'
                       >
                         <NumberInputField />
                         <NumberInputStepper>
@@ -170,14 +186,6 @@ export default function Cart() {
                           <NumberDecrementStepper />
                         </NumberInputStepper>
                       </NumberInput>
-
-                      <Button
-                        onClick={() => getAmount(item.name)}
-                        colorScheme='blue'
-                        variant='ghost'
-                      >
-                        <RepeatIcon />
-                      </Button>
                     </Flex>
                   </Td>
                   <Td isNumeric>
@@ -221,7 +229,7 @@ export default function Cart() {
               Clear Cart
             </Button>
 
-            <Button colorScheme='blue' onClick={onOpen}>
+            <Button colorScheme='blue' onClick={attemptCheckout}>
               Check out
             </Button>
 
