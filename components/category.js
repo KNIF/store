@@ -6,12 +6,12 @@ export default function Category({ name, products }) {
 
   return (
     <>
-      <Box mb='5rem' alignContent='center' pl={isSmall ? '25vw' : '0vw'}>
+      <Box mb='5rem' alignContent='center'>
         <Heading as='h2' size='xl' mb={2} textAlign='left'>
           {name}
         </Heading>
 
-        <Wrap spacing='3rem'>
+        <Wrap spacing='3rem' justify={isSmall && 'space-around'}>
           {products.map((product) => (
             <WrapItem key={product.name}>
               <Product

@@ -1,4 +1,11 @@
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  AlertDialogCloseButton,
   Box,
   Button,
   Flex,
@@ -16,15 +23,24 @@ import {
   NumberIncrementStepper,
   NumberDecrementStepper,
   useColorModeValue,
+  useDisclosure,
   useMediaQuery,
+  useToast,
 } from '@chakra-ui/react';
+import { DeleteIcon, RepeatIcon } from '@chakra-ui/icons';
+import { useRef } from 'react';
 
 import Page from '../components/page';
 import { useAppContext } from '../context/AppContext';
 
 export default function Cart() {
   const { state, dispatch } = useAppContext();
+  const toast = useToast();
+
   const bgColor = useColorModeValue('gray.100', 'gray.900');
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const cancelRef = useRef();
 
   const [isExtraSmall, isSmall, isMedium, isLarge, isExtraLarge] =
     useMediaQuery([
@@ -37,10 +53,55 @@ export default function Cart() {
 
   function getPx() {
     console.log({ isExtraSmall, isSmall, isMedium, isLarge, isExtraLarge });
-    return isExtraLarge ? '30rem' : '10rem';
+
+    return isExtraLarge ? '10vw' : '3vw';
   }
 
-  //Object.entries(cart).reduce((sum, item) => console.log(item[1].price), 0);
+  function getAmount(name) {
+    return state.find((item) => item.name === name).amount;
+  }
+
+  function changeItem(name, value) {
+    let type;
+    value = parseInt(value);
+
+    for (let s of state) {
+      if (s.name === name) {
+        if (s.amount < value) {
+          type = 'INC';
+        } else {
+          type = 'DEC';
+        }
+        console.log({ a: s.amount, b: value, c: type });
+      }
+    }
+
+    if (type) {
+      dispatch({ type, value: { name } });
+    }
+  }
+
+  function deleteItem(name) {
+    dispatch({ type: 'DEL', value: { name } });
+  }
+
+  function clearCart() {
+    dispatch({ type: 'CLEAR' });
+  }
+
+  function checkOut() {
+    toast({
+      title: 'AUDI Store',
+      description: 'Thank you for your purchase.',
+      duration: 3000,
+      status: 'success',
+      isClosable: true,
+      position: 'top',
+    });
+
+    onClose();
+    clearCart();
+  }
 
   return (
     <Page title='Cart'>
@@ -69,44 +130,77 @@ export default function Cart() {
             <Thead>
               <Tr>
                 <Th>Product</Th>
+                <Th isNumeric>Price</Th>
                 <Th isNumeric>Amount</Th>
                 <Th isNumeric>Total</Th>
               </Tr>
             </Thead>
             <Tbody>
-              {/* {Object.entries(cart).map((item) => (
-                <Tr key={item}>
+              {state.map((item) => (
+                <Tr key={item.name}>
                   <Td>{item.name}</Td>
-                  <Td isNumeric>
-                    <NumberInput
-                      defaultValue={1}
-                      min={1}
-                      max={5}
-                      allowMouseWheel
-                    >
-                      <NumberInputField />
-                      <NumberInputStepper>
-                        <NumberIncrementStepper />
-                        <NumberDecrementStepper />
-                      </NumberInputStepper>
-                    </NumberInput>
-                  </Td>
                   <Td isNumeric>{item.price} EUR</Td>
+                  <Td isNumeric>
+                    <Flex justifyContent='center'>
+                      <Button
+                        onClick={() => deleteItem(item.name)}
+                        colorScheme='blue'
+                        variant='ghost'
+                      >
+                        <DeleteIcon />
+                      </Button>
+
+                      <NumberInput
+                        defaultValue={item.amount}
+                        onChange={(value) => changeItem(item.name, value)}
+                        min={1}
+                        allowMouseWheel
+                        minWidth='6vw'
+                        maxWidth='8vw'
+                        ml='1vw'
+                        mr='1vw'
+                      >
+                        <NumberInputField />
+                        <NumberInputStepper>
+                          <NumberIncrementStepper />
+                          <NumberDecrementStepper />
+                        </NumberInputStepper>
+                      </NumberInput>
+
+                      <Button
+                        onClick={() => getAmount(item.name)}
+                        colorScheme='blue'
+                        variant='ghost'
+                      >
+                        <RepeatIcon />
+                      </Button>
+                    </Flex>
+                  </Td>
+                  <Td isNumeric>
+                    {(
+                      parseInt(item.price.replace('.', '')) * item.amount
+                    ).toLocaleString('de-DE')}{' '}
+                    EUR
+                  </Td>
                 </Tr>
-              ))} */}
+              ))}
             </Tbody>
             <Tfoot>
               <Tr>
                 <Th>TOTAL</Th>
-                {/* <Th isNumeric>{cart.length}</Th> */}
+                <Th isNumeric></Th>
                 <Th isNumeric>
-                  {/* {Object.entries(cart)
+                  {state.reduce((sum, item) => sum + item.amount, 0)}
+                </Th>
+                <Th isNumeric>
+                  {state
                     .reduce(
                       (sum, item) =>
-                        sum + parseInt(item[1].price.replace('.', '')),
+                        sum +
+                        parseInt(item.price.replace('.', '')) * item.amount,
                       0
                     )
-                    .toLocaleString('de-DE')}{' '} */}
+                    .toLocaleString('de-DE')}{' '}
                   EUR
                 </Th>
               </Tr>
@@ -114,13 +208,43 @@ export default function Cart() {
           </Table>
 
           <Flex justifyContent='center' mt='2rem'>
-            <Button colorScheme='blue' variant='ghost' mr='10vw'>
+            <Button
+              colorScheme='blue'
+              variant='ghost'
+              mr='10vw'
+              onClick={clearCart}
+            >
               Clear Cart
             </Button>
 
-            <Button colorScheme='blue' onClick={() => console.log(state)}>
+            <Button colorScheme='blue' onClick={onOpen}>
               Check out
             </Button>
+
+            <AlertDialog
+              motionPreset='slideInBottom'
+              leastDestructiveRef={cancelRef}
+              onClose={onClose}
+              isOpen={isOpen}
+              isCentered
+              closeOnOverlayClick={false}
+            >
+              <AlertDialogOverlay />
+              <AlertDialogContent>
+                <AlertDialogHeader>Check out?</AlertDialogHeader>
+                <AlertDialogBody>
+                  Are you sure you want to buy these items?
+                </AlertDialogBody>
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>
+                    No
+                  </Button>
+                  <Button colorScheme='blue' ml={3} onClick={checkOut}>
+                    Yes
+                  </Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
           </Flex>
         </Box>
       </Box>

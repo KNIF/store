@@ -8,6 +8,8 @@ export const AppReducer = (state, action) => {
       let changed = false;
       let newState = state;
 
+      if (!newState) newState = [];
+
       for (let i of newState) {
         if (i.name === action.value.name) {
           i.amount++;
@@ -30,6 +32,8 @@ export const AppReducer = (state, action) => {
     case 'DEC': {
       let newState = state;
 
+      if (!newState) newState = [];
+
       for (let i of newState) {
         if (i.name === action.value.name) {
           i.amount--;
@@ -42,9 +46,17 @@ export const AppReducer = (state, action) => {
     }
 
     case 'DEL': {
+      let newState = state.filter((item) => item.name !== action.value.name);
+
+      localStorage.setItem('cart', JSON.stringify(newState));
+
+      return newState;
+    }
+
+    case 'CLEAR': {
       localStorage.removeItem('cart');
 
-      return state.filter((item) => item.name !== action.value.name);
+      return [];
     }
   }
 };
