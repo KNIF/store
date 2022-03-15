@@ -3,9 +3,17 @@ ports:
     onOpen: open-preview
 
 tasks:
-  - init: npm install
-    command: npm run dev
-
+  - name: Dev
+    before: npm i -g yarn
+    init: yarn install
+    command: yarn dev
+  - name: Prod
+    before: npm i -g yarn
+    init: |
+      yarn install
+      yarn build
+    command: yarn start   
+    
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
