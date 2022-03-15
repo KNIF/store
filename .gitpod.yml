@@ -1,3 +1,11 @@
+ports:
+  - port: 3000
+    onOpen: open-preview
+
+tasks:
+  - init: npm install
+    command: npm run dev
+
 github:
   prebuilds:
     # enable for the master/default branch (defaults to true)
@@ -8,9 +16,28 @@ github:
     pullRequests: true
     # enable for pull requests coming from forks (defaults to false)
     pullRequestsFromForks: true
+    # add a check to pull requests (defaults to true)
+    addCheck: true
     # add a "Review in Gitpod" button as a comment to pull requests (defaults to true)
     addComment: true
     # add a "Review in Gitpod" button to pull requests (defaults to false)
     addBadge: true
     # add a label once the prebuild is ready to pull requests (defaults to false)
     addLabel: prebuilt-in-gitpod
+
+vscode:
+  extensions:
+    - zhuangtongfa.material-theme
+    - esbenp.prettier-vscode
+    - eamodio.gitlens
+    - aaron-bond.better-comments
+    - adpyke.codesnap
+    - naumovs.color-highlight
+    - dsznajder.es7-react-js-snippets
+    - ecmel.vscode-html-css
+    - redwan-hossain.auto-rename-tag-clone
+    - ritwickdey.liveserver
+    - eg2.vscode-npm-script
+    - humao.rest-client
+    - wayou.vscode-todo-highlight
+    - vscode-icons-team.vscode-icons
