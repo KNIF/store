@@ -75,7 +75,7 @@ export default function Cart() {
   // function to update amount of item with given name
   function changeItemAmount(name, value) {
     let type;
-    let iValue = parseInt(value);
+    let iValue = parseInt(value, 10);
 
     // find item with given name and check if should increment or decrement
     for (const s of state) {
@@ -231,7 +231,7 @@ export default function Cart() {
                   <Td isNumeric>
                     {/* calculate item price */}
                     {(
-                      parseInt(item.price.replace('.', '')) * item.amount
+                      parseInt(item.price.replace('.', ''), 10) * item.amount
                     ).toLocaleString('de-DE')}{' '}
                     EUR
                   </Td>
@@ -252,7 +252,7 @@ export default function Cart() {
                     .reduce(
                       (sum, item) =>
                         sum +
-                        parseInt(item.price.replace('.', '')) * item.amount,
+                        parseInt(item.price.replace('.', ''), 10) * item.amount,
                       0
                     )
                     .toLocaleString('de-DE')}{' '}
