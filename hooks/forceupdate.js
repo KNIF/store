@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 // react hook to force component/page rerender
 export const useForceUpdate = () => {

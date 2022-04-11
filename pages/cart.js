@@ -25,14 +25,14 @@ import {
   useDisclosure,
   useMediaQuery,
   useToast,
-} from '@chakra-ui/react';
-import { DeleteIcon } from '@chakra-ui/icons';
-import { useRef } from 'react';
-import Router from 'next/router';
+} from "@chakra-ui/react";
+import { DeleteIcon } from "@chakra-ui/icons";
+import { useRef } from "react";
+import Router from "next/router";
 
-import Page from '../components/page';
-import { useCartContext } from '../context/CartContext';
-import { useForceUpdate } from '../hooks/forceupdate';
+import Page from "../components/page";
+import { useCartContext } from "../context/CartContext";
+import { useForceUpdate } from "../hooks/forceupdate";
 
 // cart page
 export default function Cart() {
@@ -46,7 +46,7 @@ export default function Cart() {
   const forceUpdate = useForceUpdate();
 
   // set background color of table according to the color mode (dark/light)
-  const bgColor = useColorModeValue('gray.100', 'gray.900');
+  const bgColor = useColorModeValue("gray.100", "gray.900");
 
   // handler for checkout confirmation dialog state (open/close)
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -57,11 +57,11 @@ export default function Cart() {
   // execute css media queries and store the results in boolean variables
   const [isExtraSmall, isSmall, isMedium, isLarge, isExtraLarge] =
     useMediaQuery([
-      '(max-width: 600px)',
-      '(min-width: 600px)',
-      '(min-width: 768px)',
-      '(min-width: 992px)',
-      '(min-width: 1200px)',
+      "(max-width: 600px)",
+      "(min-width: 600px)",
+      "(min-width: 768px)",
+      "(min-width: 992px)",
+      "(min-width: 1200px)",
     ]);
 
   // adjust paddingX to viewport size
@@ -69,7 +69,7 @@ export default function Cart() {
     //console.log({ isExtraSmall, isSmall, isMedium, isLarge, isExtraLarge });
 
     // check if viewport is large and increase paddingX of page if so
-    return isExtraLarge ? '10vw' : '3vw';
+    return isExtraLarge ? "10vw" : "3vw";
   }
 
   // function to update amount of item with given name
@@ -80,7 +80,7 @@ export default function Cart() {
     // find item with given name and check if should increment or decrement
     for (const s of state) {
       if (s.name === name) {
-        type = s.amount < iValue ? 'INC' : 'DEC';
+        type = s.amount < iValue ? "INC" : "DEC";
       }
     }
 
@@ -95,18 +95,18 @@ export default function Cart() {
 
   // function to delete item with given name from cart
   function deleteItem(name) {
-    dispatch({ type: 'DEL', value: { name } });
+    dispatch({ type: "DEL", value: { name } });
   }
 
   // function to show toast message if cart is empty
   function cardEmptyToast() {
     toast({
-      title: 'AUDI Store',
-      description: 'Your cart is empty.',
-      status: 'warning',
+      title: "AUDI Store",
+      description: "Your cart is empty.",
+      status: "warning",
       duration: 3000,
       isClosable: true,
-      position: 'top',
+      position: "top",
     });
   }
 
@@ -117,7 +117,7 @@ export default function Cart() {
       cardEmptyToast();
     } else {
       // clear cart
-      dispatch({ type: 'CLEAR' });
+      dispatch({ type: "CLEAR" });
     }
   }
 
@@ -136,52 +136,52 @@ export default function Cart() {
   function checkOut() {
     // display success toast message
     toast({
-      title: 'AUDI Store',
-      description: 'Thank you for your purchase.',
+      title: "AUDI Store",
+      description: "Thank you for your purchase.",
       duration: 3000,
-      status: 'success',
+      status: "success",
       isClosable: true,
-      position: 'top',
+      position: "top",
     });
 
     // close checkout confirmation dialog
     onClose();
 
     // clear cart
-    dispatch({ type: 'CLEAR' });
+    dispatch({ type: "CLEAR" });
 
     // redirect to home page after 1 second
     setTimeout(() => {
-      Router.push('/');
+      Router.push("/");
     }, 1000);
   }
 
   // render page
   return (
-    <Page title='Cart'>
-      <Box textAlign='center' py={10} px={getPx}>
+    <Page title="Cart">
+      <Box textAlign="center" py={10} px={getPx}>
         {/* cart header */}
         <Heading
-          display='inline-block'
-          as='h2'
-          size='2xl'
-          backgroundColor='blue.400'
-          backgroundClip='text'
-          mb='2rem'
+          display="inline-block"
+          as="h2"
+          size="2xl"
+          backgroundColor="blue.400"
+          backgroundClip="text"
+          mb="2rem"
         >
           Cart
         </Heading>
 
-        <Box px='3rem'>
+        <Box px="3rem">
           {/* table with cart items */}
           <Table
-            variant='simple'
-            colorScheme='blue'
-            rounded='lg'
-            shadow='lg'
-            padding='1.5rem'
+            variant="simple"
+            colorScheme="blue"
+            rounded="lg"
+            shadow="lg"
+            padding="1.5rem"
             backgroundColor={bgColor}
-            size='lg'
+            size="lg"
           >
             {/* table head */}
             <Thead>
@@ -200,12 +200,12 @@ export default function Cart() {
                   <Td>{item.name}</Td>
                   <Td isNumeric>{item.price} EUR</Td>
                   <Td isNumeric>
-                    <Flex justifyContent='center'>
+                    <Flex justifyContent="center">
                       {/* delete item button */}
                       <Button
                         onClick={() => deleteItem(item.name)}
-                        colorScheme='blue'
-                        variant='ghost'
+                        colorScheme="blue"
+                        variant="ghost"
                       >
                         <DeleteIcon />
                       </Button>
@@ -216,9 +216,9 @@ export default function Cart() {
                         onChange={(value) => changeItemAmount(item.name, value)}
                         min={1}
                         allowMouseWheel
-                        minWidth='6vw'
-                        maxWidth='8vw'
-                        ml='1vw'
+                        minWidth="6vw"
+                        maxWidth="8vw"
+                        ml="1vw"
                       >
                         <NumberInputField />
                         <NumberInputStepper>
@@ -231,8 +231,8 @@ export default function Cart() {
                   <Td isNumeric>
                     {/* calculate item price */}
                     {(
-                      parseInt(item.price.replace('.', '')) * item.amount
-                    ).toLocaleString('de-DE')}{' '}
+                      parseInt(item.price.replace(".", "")) * item.amount
+                    ).toLocaleString("de-DE")}{" "}
                     EUR
                   </Td>
                 </Tr>
@@ -252,10 +252,10 @@ export default function Cart() {
                     .reduce(
                       (sum, item) =>
                         sum +
-                        parseInt(item.price.replace('.', '')) * item.amount,
+                        parseInt(item.price.replace(".", "")) * item.amount,
                       0
                     )
-                    .toLocaleString('de-DE')}{' '}
+                    .toLocaleString("de-DE")}{" "}
                   EUR
                 </Th>
               </Tr>
@@ -263,25 +263,25 @@ export default function Cart() {
           </Table>
 
           {/* bottom bar */}
-          <Flex justifyContent='center' mt='2rem'>
+          <Flex justifyContent="center" mt="2rem">
             {/* clear cart button */}
             <Button
-              colorScheme='blue'
-              variant='ghost'
-              mr='10vw'
+              colorScheme="blue"
+              variant="ghost"
+              mr="10vw"
               onClick={clearCart}
             >
               Clear Cart
             </Button>
 
             {/* checkout button */}
-            <Button colorScheme='blue' onClick={attemptCheckout}>
+            <Button colorScheme="blue" onClick={attemptCheckout}>
               Check out
             </Button>
 
             {/* ask confirmation before submitting order */}
             <AlertDialog
-              motionPreset='slideInBottom'
+              motionPreset="slideInBottom"
               leastDestructiveRef={cancelRef}
               onClose={onClose}
               isOpen={isOpen}
@@ -298,7 +298,7 @@ export default function Cart() {
                   <Button ref={cancelRef} onClick={onClose}>
                     No
                   </Button>
-                  <Button colorScheme='blue' ml={3} onClick={checkOut}>
+                  <Button colorScheme="blue" ml={3} onClick={checkOut}>
                     Yes
                   </Button>
                 </AlertDialogFooter>

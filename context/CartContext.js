@@ -4,8 +4,8 @@ import {
   useEffect,
   useMemo,
   useReducer,
-} from 'react';
-import { CartReducer } from './CartReducer';
+} from "react";
+import { CartReducer } from "./CartReducer";
 
 // create a global context storing the cart items
 const CartContext = createContext();
@@ -18,11 +18,11 @@ export function CartWrapper({ children }) {
   // load the cart items from local storage on initial page render
   useEffect(() => {
     // check if cart items are already stored in local storage
-    if (localStorage.getItem('cart')) {
+    if (localStorage.getItem("cart")) {
       // if yes, read the cart items from local storage and store them in global context
       dispatch({
-        type: 'INIT',
-        value: JSON.parse(localStorage.getItem('cart')),
+        type: "INIT",
+        value: JSON.parse(localStorage.getItem("cart")),
       });
     }
   }, []);

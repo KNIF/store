@@ -3,12 +3,12 @@ export const CartReducer = (state, action) => {
   // switch on operation type
   switch (action.type) {
     // initialize the cart with passed items
-    case 'INIT': {
+    case "INIT": {
       return action.value;
     }
 
     // increment the quantity of an item by 1
-    case 'INC': {
+    case "INC": {
       // store if an item exists in the cart
       let changed = false;
 
@@ -35,14 +35,14 @@ export const CartReducer = (state, action) => {
         });
 
       // save cart to local storage
-      localStorage.setItem('cart', JSON.stringify(newState));
+      localStorage.setItem("cart", JSON.stringify(newState));
 
       // return updated cart
       return newState;
     }
 
     // decrement the quantity of an item by 1
-    case 'DEC': {
+    case "DEC": {
       // copy the current state to a new array
       let newState = state;
 
@@ -57,28 +57,28 @@ export const CartReducer = (state, action) => {
       }
 
       // save cart to local storage
-      localStorage.setItem('cart', JSON.stringify(newState));
+      localStorage.setItem("cart", JSON.stringify(newState));
 
       // return updated cart
       return newState;
     }
 
     // remove an item from the cart
-    case 'DEL': {
+    case "DEL": {
       // save filtered cart (without the item to be deleted) to a variable
       const newState = state.filter((item) => item.name !== action.value.name);
 
       // write the new cart (without the item to be deleted) to local storage
-      localStorage.setItem('cart', JSON.stringify(newState));
+      localStorage.setItem("cart", JSON.stringify(newState));
 
       // return the new cart without the item to be deleted
       return newState;
     }
 
     // remove all items from the cart
-    case 'CLEAR': {
+    case "CLEAR": {
       // clear the local storage
-      localStorage.removeItem('cart');
+      localStorage.removeItem("cart");
 
       // clear the cart by returning an empty array
       return [];

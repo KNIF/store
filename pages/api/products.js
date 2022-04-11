@@ -1,4 +1,4 @@
-import json from '../../data/products.json';
+import json from "../../data/products.json";
 
 // api route returning all products as json on "GET /api/products"
 export default function handler(req, res) {
