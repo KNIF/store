@@ -6,5 +6,5 @@ export const useForceUpdate = () => {
   const [value, setValue] = useState(0);
 
   // return updated state value forcing component/page to rerender
-  return () => setValue((value) => value + 1);
+  return () => setValue((v) => v + 1);
 };
