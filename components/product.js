@@ -9,7 +9,7 @@ import { toasterBottomRight } from '../lib/toaster';
 // product component
 export default function Product({ name, price, image }) {
   // get access to cart items from global context
-  const { state, dispatch } = useCartContext();
+  const { dispatch } = useCartContext();
 
   // set background color of box surrounding the item according to the color mode (dark/light)
   const bgColor = useColorModeValue('gray.100', 'gray.900');

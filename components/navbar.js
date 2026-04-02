@@ -53,7 +53,7 @@ export default function Navbar() {
         {/* mobile friendly navbar hamburger menu */}
         <IconButton
           size={'md'}
-          aria-label={'Open Menu'}
+          aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
           display={{ md: 'none' }}
           onClick={onToggle}
           style={{ marginRight: '1rem' }}

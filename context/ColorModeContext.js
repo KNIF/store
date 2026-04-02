@@ -1,6 +1,9 @@
 import { createContext, useContext, useSyncExternalStore } from 'react';
 
-const ColorModeContext = createContext();
+const ColorModeContext = createContext({
+  colorMode: 'dark',
+  toggleColorMode: () => {},
+});
 
 function getColorModeSnapshot() {
   const stored = localStorage.getItem('chakra-color-mode');
@@ -14,6 +17,18 @@ function getColorModeServerSnapshot() {
 let listeners = [];
 function subscribeColorMode(callback) {
   listeners.push(callback);
+  if (typeof window !== 'undefined') {
+    const onStorage = (event) => {
+      if (event.key === 'chakra-color-mode') {
+        notifyListeners();
+      }
+    };
+    window.addEventListener('storage', onStorage);
+    return () => {
+      listeners = listeners.filter((l) => l !== callback);
+      window.removeEventListener('storage', onStorage);
+    };
+  }
   return () => {
     listeners = listeners.filter((l) => l !== callback);
   };
