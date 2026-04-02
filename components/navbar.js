@@ -4,12 +4,10 @@ import {
   HStack,
   Link,
   Button,
-  Icon,
   IconButton,
   Stack,
 } from '@chakra-ui/react';
-import { Menu, Moon, Sun, X } from 'lucide-react';
-import { FaShoppingCart } from 'react-icons/fa';
+import { Menu, Moon, ShoppingCart, Sun, X } from 'lucide-react';
 import NextLink from 'next/link';
 import { useState } from 'react';
 
@@ -103,15 +101,11 @@ export default function Navbar() {
           </Button>
 
           {/* shopping cart button */}
-          <Link asChild>
+          <Button asChild fontSize={'sm'} fontWeight={600} colorPalette='blue'>
             <NextLink href={'/cart'}>
-              <Button fontSize={'sm'} fontWeight={600} colorPalette='blue'>
-                <Icon>
-                  <FaShoppingCart />
-                </Icon>
-              </Button>
+              <ShoppingCart size={20} />
             </NextLink>
-          </Link>
+          </Button>
         </Stack>
       </Flex>
 

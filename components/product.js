@@ -1,5 +1,5 @@
-import { Box, Button, Text, Icon } from '@chakra-ui/react';
-import { FaCartPlus } from 'react-icons/fa';
+import { Box, Button, Text } from '@chakra-ui/react';
+import { ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 
 import { useCartContext } from '../context/CartContext';
@@ -50,9 +50,7 @@ export default function Product({ name, price, image }) {
       <Text fontSize={'sm'}>{price} EUR</Text>
 
       <Button colorPalette='blue' variant='ghost' mt='1rem' onClick={addToCart}>
-        <Icon>
-          <FaCartPlus />
-        </Icon>
+        <ShoppingCart size={20} />
       </Button>
     </Box>
   );
