@@ -1,9 +1,6 @@
 import { createContext, useContext, useSyncExternalStore } from 'react';
 
-const ColorModeContext = createContext({
-  colorMode: 'dark',
-  toggleColorMode: () => {},
-});
+const ColorModeContext = createContext(undefined);
 
 function getColorModeSnapshot() {
   const stored = localStorage.getItem('chakra-color-mode');
@@ -17,6 +14,8 @@ function getColorModeServerSnapshot() {
 let listeners = [];
 function subscribeColorMode(callback) {
   listeners.push(callback);
+
+  // sync color mode across browser tabs via storage event
   if (typeof window !== 'undefined') {
     const onStorage = (event) => {
       if (event.key === 'chakra-color-mode') {
@@ -29,6 +28,7 @@ function subscribeColorMode(callback) {
       window.removeEventListener('storage', onStorage);
     };
   }
+
   return () => {
     listeners = listeners.filter((l) => l !== callback);
   };
@@ -58,7 +58,13 @@ export function ColorModeProvider({ children }) {
   );
 }
 
-export const useColorMode = () => useContext(ColorModeContext);
+export function useColorMode() {
+  const context = useContext(ColorModeContext);
+  if (context === undefined) {
+    throw new Error('useColorMode must be used within a ColorModeProvider');
+  }
+  return context;
+}
 
 export function useColorModeValue(light, dark) {
   const { colorMode } = useColorMode();
