@@ -3,11 +3,11 @@ import {
   Heading,
   Text,
   Button,
-  useColorModeValue,
 } from '@chakra-ui/react';
 import Link from 'next/link';
 
 import Page from '../components/page';
+import { useColorModeValue } from '../context/ColorModeContext';
 
 // 404 not found page
 export default function NotFound() {
@@ -35,8 +35,8 @@ export default function NotFound() {
         </Text>
 
         {/* button to go back to homepage */}
-        <Link href='/' passHref>
-          <Button colorScheme='blue'>Go to Home</Button>
+        <Link href='/'>
+          <Button colorPalette='blue'>Go to Home</Button>
         </Link>
       </Box>
     </Page>

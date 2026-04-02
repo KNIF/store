@@ -1,4 +1,3 @@
-import { calc } from '@chakra-ui/styled-system';
 import Head from 'next/head';
 
 import Navbar from '../components/navbar';
@@ -13,7 +12,7 @@ export default function Page({ title, children }) {
         <title>{title} - AUDI Store</title>
       </Head>
 
-      <main style={{ minHeight: calc('100vh').subtract('223px') }}>
+      <main style={{ minHeight: 'calc(100vh - 223px)' }}>
         <Navbar />
 
         {/* render child components of page */}

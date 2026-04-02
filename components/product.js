@@ -1,23 +1,15 @@
-import {
-  Box,
-  Button,
-  Text,
-  Icon,
-  useColorModeValue,
-  useToast,
-} from '@chakra-ui/react';
+import { Box, Button, Text, Icon } from '@chakra-ui/react';
 import { FaCartPlus } from 'react-icons/fa';
 import Image from 'next/image';
 
 import { useCartContext } from '../context/CartContext';
+import { useColorModeValue } from '../context/ColorModeContext';
+import { toasterBottomRight } from '../lib/toaster';
 
 // product component
 export default function Product({ name, price, image }) {
   // get access to cart items from global context
   const { state, dispatch } = useCartContext();
-
-  // instantiate toast message handler
-  const toast = useToast();
 
   // set background color of box surrounding the item according to the color mode (dark/light)
   const bgColor = useColorModeValue('gray.100', 'gray.900');
@@ -34,12 +26,10 @@ export default function Product({ name, price, image }) {
     dispatch({ type: 'INC', value: { name, price } });
 
     // show toast message confirming item addition to cart
-    toast({
+    toasterBottomRight.create({
       title: 'AUDI Store',
       description: `${name} added to cart.`,
       duration: 3000,
-      isClosable: true,
-      position: 'bottom-right',
     });
   }
 
@@ -59,8 +49,10 @@ export default function Product({ name, price, image }) {
 
       <Text fontSize={'sm'}>{price} EUR</Text>
 
-      <Button colorScheme='blue' variant='ghost' mt='1rem' onClick={addToCart}>
-        <Icon as={FaCartPlus} w={5} h={5} />
+      <Button colorPalette='blue' variant='ghost' mt='1rem' onClick={addToCart}>
+        <Icon>
+          <FaCartPlus />
+        </Icon>
       </Button>
     </Box>
   );

@@ -1,7 +1,8 @@
-import { Box, Heading, Text, Link, useColorModeValue } from '@chakra-ui/react';
-import { ExternalLinkIcon } from '@chakra-ui/icons';
+import { Box, Heading, Text, Link } from '@chakra-ui/react';
+import { ExternalLink } from 'lucide-react';
 
 import Page from '../components/page';
+import { useColorModeValue } from '../context/ColorModeContext';
 
 // about page
 export default function About() {
@@ -26,29 +27,29 @@ export default function About() {
           This website is a demo of a basic online store for cars.
           <br />
           Built using{' '}
-          <Link href='https://nextjs.org' isExternal>
+          <Link href='https://nextjs.org' target='_blank' rel='noopener noreferrer'>
             Next.js
-            <ExternalLinkIcon mx='3px' />
+            <ExternalLink size={12} style={{ display: 'inline', marginLeft: '3px', verticalAlign: 'middle' }} />
           </Link>{' '}
           and{' '}
-          <Link href='https://chakra-ui.com' isExternal>
+          <Link href='https://chakra-ui.com' target='_blank' rel='noopener noreferrer'>
             Chakra UI
-            <ExternalLinkIcon mx='3px' />
+            <ExternalLink size={12} style={{ display: 'inline', marginLeft: '3px', verticalAlign: 'middle' }} />
           </Link>
           {'.'}
         </Text>
 
         <Text color={textColor} mt={6}>
           The source code is available on{' '}
-          <Link href='https://github.com/KNIF/store' isExternal>
+          <Link href='https://github.com/KNIF/store' target='_blank' rel='noopener noreferrer'>
             GitHub
-            <ExternalLinkIcon mx='3px' />
+            <ExternalLink size={12} style={{ display: 'inline', marginLeft: '3px', verticalAlign: 'middle' }} />
           </Link>
         </Text>
 
         <Text color={textColor} mt={6}>
           Created by{' '}
-          <Link href='https://mauricehuber.com' isExternal>
+          <Link href='https://mauricehuber.com' target='_blank' rel='noopener noreferrer'>
             Maurice Huber
           </Link>{' '}
           between 23.11.2021 and 25.11.2021

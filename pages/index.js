@@ -4,14 +4,14 @@ import {
   Heading,
   Text,
   Spinner,
-  useColorModeValue,
 } from '@chakra-ui/react';
-import { CloseIcon } from '@chakra-ui/icons';
+import { X } from 'lucide-react';
 import useSWR from 'swr';
 
 import fetcher from '../lib/fetcher';
 import Page from '../components/page';
 import Category from '../components/category';
+import { useColorModeValue } from '../context/ColorModeContext';
 
 // home/index page
 export default function Home() {
@@ -37,7 +37,7 @@ export default function Home() {
               h={'55px'}
               textAlign='center'
             >
-              <CloseIcon boxSize={'20px'} color={'white'} />
+              <X size={20} color='white' />
             </Flex>
           </Box>
           <Heading as='h2' size='xl' mt={6} mb={2}>

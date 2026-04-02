@@ -14,7 +14,7 @@ export default function Category({ name, products }) {
         {name}
       </Heading>
 
-      <Wrap spacing='3rem' justify={isSmall && 'space-around'}>
+      <Wrap gap='3rem' justify={isSmall ? 'space-around' : undefined}>
         {/* iterate through products passed via props (parameter) and render them */}
         {products.map((product) => (
           <WrapItem key={product.name}>
