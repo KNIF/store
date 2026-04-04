@@ -4,18 +4,15 @@ import {
   HStack,
   Link,
   Button,
-  Icon,
   IconButton,
-  useDisclosure,
-  useColorModeValue,
-  useColorMode,
   Stack,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { FaShoppingCart } from 'react-icons/fa';
+import { Menu, Moon, ShoppingCart, Sun, X } from 'lucide-react';
 import NextLink from 'next/link';
+import { useState } from 'react';
 
 import Logo from './logo';
+import { useColorMode, useColorModeValue } from '../context/ColorModeContext';
 
 // store navbar items in an object
 const navbarItems = {
@@ -26,7 +23,9 @@ const navbarItems = {
 // navbar component
 export default function Navbar() {
   // handler for mobile hamburger menu state (open/close)
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
+  const onToggle = () => setIsOpen((prev) => !prev);
+  const onClose = () => setIsOpen(false);
 
   // hook for getting and setting the color mode
   const { colorMode, toggleColorMode } = useColorMode();
@@ -52,35 +51,38 @@ export default function Navbar() {
         {/* mobile friendly navbar hamburger menu */}
         <IconButton
           size={'md'}
-          icon={isOpen ? <CloseIcon /> : <HamburgerIcon />} // render hamburger icon if menu is open else render close icon
-          aria-label={'Open Menu'}
+          aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
           display={{ md: 'none' }}
-          onClick={isOpen ? onClose : onOpen} // toggle menu open/close
+          onClick={onToggle}
           style={{ marginRight: '1rem' }}
-        />
+          variant='ghost'
+        >
+          {isOpen ? <X /> : <Menu />}
+        </IconButton>
 
         {/* left side of navbar */}
-        <HStack spacing={8} alignItems={'center'}>
+        <HStack gap={8} alignItems={'center'}>
           <Logo />
 
           {/* navbar items */}
-          <HStack as={'nav'} spacing={4} display={{ base: 'none', md: 'flex' }}>
+          <HStack as={'nav'} gap={4} display={{ base: 'none', md: 'flex' }}>
             {/* iterate though array with navbar items and render them in a button */}
             {Object.entries(navbarItems).map(([key, value]) => (
-              <NextLink href={value} key={key} passHref>
-                <Link
-                  px={2}
-                  py={1}
-                  rounded={'md'}
-                  _hover={{
-                    textDecoration: 'none',
-                    bg: btnBgColor,
-                  }}
-                  href={value}
-                >
+              <Link
+                asChild
+                key={key}
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: btnBgColor,
+                }}
+              >
+                <NextLink href={value}>
                   {key}
-                </Link>
-              </NextLink>
+                </NextLink>
+              </Link>
             ))}
           </HStack>
         </HStack>
@@ -90,43 +92,44 @@ export default function Navbar() {
           flex={{ base: 1, md: 0 }}
           justify={'flex-end'}
           direction={'row'}
-          spacing={5}
+          gap={5}
         >
           {/* toggle theme button */}
-          <Button onClick={toggleColorMode}>
+          <Button onClick={toggleColorMode} variant='outline'>
             {/* render button with icon according to set color scheme */}
-            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+            {colorMode === 'light' ? <Moon /> : <Sun />}
           </Button>
 
           {/* shopping cart button */}
-          <NextLink href={'/cart'} passHref>
-            <Button fontSize={'sm'} fontWeight={600} colorScheme='blue'>
-              <Icon as={FaShoppingCart} w={5} h={5} />
-            </Button>
-          </NextLink>
+          <Button asChild fontSize={'sm'} fontWeight={600} colorPalette='blue'>
+            <NextLink href={'/cart'}>
+              <ShoppingCart size={20} />
+            </NextLink>
+          </Button>
         </Stack>
       </Flex>
 
       {/* mobile navbar menu only shows if hamburger icon is clicked */}
       {isOpen && (
         <Box pb={4} display={{ md: 'none' }}>
-          <Stack as={'nav'} spacing={4}>
+          <Stack as={'nav'} gap={4}>
             {/* iterate though array with navbar items and render them in a button */}
             {Object.entries(navbarItems).map(([key, value]) => (
-              <NextLink href={value} key={key} passHref>
-                <Link
-                  px={2}
-                  py={1}
-                  rounded={'md'}
-                  _hover={{
-                    textDecoration: 'none',
-                    bg: btnBgColor,
-                  }}
-                  href={value}
-                >
+              <Link
+                asChild
+                key={key}
+                px={2}
+                py={1}
+                rounded={'md'}
+                _hover={{
+                  textDecoration: 'none',
+                  bg: btnBgColor,
+                }}
+              >
+                <NextLink href={value} onClick={onClose}>
                   {key}
-                </Link>
-              </NextLink>
+                </NextLink>
+              </Link>
             ))}
           </Stack>
         </Box>

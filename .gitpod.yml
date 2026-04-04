@@ -4,15 +4,15 @@ ports:
 
 tasks:
   - name: Dev
-    before: npm i -g yarn
+    before: nvm install && npm i -g yarn
     init: yarn install
     command: yarn dev
   - name: Prod
-    before: npm i -g yarn
+    before: nvm install && npm i -g yarn
     init: |
       yarn install
       yarn build
-    command: yarn start   
+    command: yarn start
     
 github:
   prebuilds:
